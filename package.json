@@ -1,0 +1,38 @@
+{
+  "name": "go-work-react",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "tw-prod": "npx tailwindcss -o ./client/tailwind.css --watch",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.15.4",
+    "@headlessui/react": "^1.4.2",
+    "bcrypt": "^5.0.1",
+    "meteor-node-stubs": "^1.1.0",
+    "moment": "^2.29.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-loading-skeleton": "^3.0.1",
+    "react-router-dom": "^6.1.0",
+    "react-to-print": "^2.14.2",
+    "recoil": "^0.5.2",
+    "recoil-persist": "^4.0.0"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.jsx",
+      "server": "server/main.js"
+    },
+    "testModule": "tests/main.js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss": "8.3",
+    "postcss-load-config": "^3.1.0",
+    "tailwindcss": "^3.0.1"
+  }
+}
