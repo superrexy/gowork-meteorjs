@@ -40,9 +40,27 @@ export const Order = () => {
       plans.price,
       auth.user._id,
       (error) => {
-        if (error) console.log(error);
+        if (error)
+          toast.error(error.reason, {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         else {
-          navigate("/order-success", {replace: true});
+          toast.success("Booking Berhasil!", {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          navigate("/order-success", { replace: true });
         }
       }
     );

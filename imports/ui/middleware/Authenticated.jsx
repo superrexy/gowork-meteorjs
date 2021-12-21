@@ -11,7 +11,7 @@ export const Authenticated = ({ children, roles }) => {
   console.log(roles.includes(auth?.user?.profile?.role));
 
   if (!auth.check) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   if (auth.check && !userRole) {

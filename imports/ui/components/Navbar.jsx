@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Link as LinkScroll } from "react-scroll";
 import { useRecoilState } from "recoil";
 import { authenticated } from "../store/index";
 import { Dropdown } from "./Dropdown";
@@ -18,18 +19,15 @@ const Navbar = () => {
           </div>
           {!auth.check ? (
             <div className="flex w-6/12 justify-around">
-              <a href="/" className="font-semibold no-underline font-pop">
+              <LinkScroll spy={true} smooth={true} to="home" className="font-semibold no-underline font-pop">
                 Home
-              </a>
-              <a href="/" className="font-semibold no-underline">
+              </LinkScroll>
+              <LinkScroll spy={true} smooth={true} to="benefits" className="font-semibold no-underline">
                 Benefit
-              </a>
-              <a href="/" className="font-semibold no-underline">
+              </LinkScroll>
+              <LinkScroll spy={true} smooth={true} to="booking" className="font-semibold no-underline">
                 Booking
-              </a>
-              <a href="/" className="font-semibold no-underline">
-                About
-              </a>
+              </LinkScroll>
             </div>
           ) : (
             <div className="flex w-6/12 justify-around"></div>

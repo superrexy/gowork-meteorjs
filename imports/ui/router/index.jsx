@@ -10,7 +10,6 @@ import { OrderSuccess } from "../views/OrderSuccess";
 import { Dashboard as UserDashboard } from "../views/user/Dashboard";
 import { Authenticated } from "../middleware/Authenticated";
 import { Guest } from "../middleware/Guest";
-import { ROLE } from "../utils/Role";
 
 export const Router = () => {
   return (

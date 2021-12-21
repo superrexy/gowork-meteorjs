@@ -1,21 +1,19 @@
 import React from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { Link } from "react-router-dom";
-import { BenefitCard } from "../components/BenefitCard";
-import { BenefitsCollection } from "../../api/collections/benefits";
+import { Link as LinkScroll } from "react-scroll";
 import { PlansCollection } from "../../api/collections/plans";
 import { Footer } from "../components/Footer";
 import Navbar from "../components/Navbar";
 import CurrencyToIDR from "../utils/CurrencyToIDR";
 
 const LandingPage = () => {
-  const benefits = useTracker(() => BenefitsCollection.find({}).fetch());
   const plans = useTracker(() => PlansCollection.find({}).fetch());
 
   return (
     <>
       <Navbar />
-      <section className="bg-primary-300 w-full">
+      <section className="bg-primary-300 w-full" id="home">
         <div className="min-h-screen">
           <div className="container">
             <div className="flex justify-center items-center py-20 2xl:py-40">
@@ -31,12 +29,14 @@ const LandingPage = () => {
                   are really passionate in the programming.
                 </p>
                 <div>
-                  <a
-                    href="#"
+                  <LinkScroll
+                    spy={true}
+                    smooth={true}
+                    to="booking"
                     className="py-4 px-6 bg-secondary-500 text-white rounded-full font-semibold hover:bg-primary-500 hover:bg-opacity-75 hover:text-primary transition-colors delay-100"
                   >
                     Booking Now
-                  </a>
+                  </LinkScroll>
                 </div>
               </div>
               <div>
@@ -54,25 +54,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="pt-6 pb-24 ">
-        <div className="flex justify-center items-center flex-col">
-          <p className="text-3xl font-semibold tracking-tight mb-6">Benefits</p>
-          <div className="flex">
-            {benefits?.map((item) => {
-              return (
-                <BenefitCard
-                  key={item._id}
-                  title={item.title}
-                  desc={item.desc}
-                  imageUrl={item.imageUrl}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-primary-300">
+      <section className="bg-primary-300" id="benefits">
         <div className="pt-16 pb-24">
           <div className="flex flex-col justify-center items-center">
             <p className="text-white text-center text-3xl font-semibold tracking-wide mb-8">
@@ -87,13 +69,16 @@ const LandingPage = () => {
               </div>
               <div className="w-4/12">
                 <p className="text-3xl tracking-wide  font-semibold text-white">
-                  Lorem ipsum
+                  Networking
                 </p>
                 <p className="text-gray-300 tracking-wide">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Corrupti dolor tenetur reiciendis quo! Aliquam autem ullam
-                  culpa voluptas laboriosam consequatur quae perspiciatis illo
-                  vitae doloremque cumque optio, nihil ex expedita!
+                  Coworking space increases the chances of meeting like-minded
+                  people is a great incentive for your business development. You
+                  get to interact with people from various industries and
+                  sectors. It only fosters a sense of community, but interacting
+                  with high-performing individuals will also boost your own
+                  self-confidence along with opening doors for enhancing your
+                  service.
                 </p>
               </div>
             </div>
@@ -101,13 +86,15 @@ const LandingPage = () => {
             <div className="flex justify-center items-center mb-20">
               <div className="w-4/12">
                 <p className="text-3xl tracking-wide  font-semibold text-white">
-                  Lorem ipsum
+                  Great Offers and Discounts
                 </p>
                 <p className="text-gray-300 tracking-wide">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Corrupti dolor tenetur reiciendis quo! Aliquam autem ullam
-                  culpa voluptas laboriosam consequatur quae perspiciatis illo
-                  vitae doloremque cumque optio, nihil ex expedita!
+                  Working from a shared office space has a variety of benefits.
+                  Such coworking spaces offer a lot of discounts to members.
+                  Stay updated with the latest offers make the best use of it.
+                  Such offers and discounts are provided to make a member’s life
+                  in the coworking space convenient and enhance the work-life
+                  balance.
                 </p>
               </div>
               <div className="w-4/12">
@@ -121,13 +108,15 @@ const LandingPage = () => {
               </div>
               <div className="w-4/12">
                 <p className="text-3xl tracking-wide  font-semibold text-white">
-                  Lorem ipsum
+                  Improve Productivity
                 </p>
                 <p className="text-gray-300 tracking-wide text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Corrupti dolor tenetur reiciendis quo! Aliquam autem ullam
-                  culpa voluptas laboriosam consequatur quae perspiciatis illo
-                  vitae doloremque cumque optio, nihil ex expedita!
+                  Around 68% of people find they can focus better while working
+                  in a coworking space. If you prefer to work out of office but
+                  yet in a professional zone, renting a business space from a
+                  coworking site will improve your focus level. Plus the
+                  additional benefits a coworking space provides will always
+                  outweigh the cost.
                 </p>
               </div>
             </div>
@@ -145,7 +134,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="bg-primary-400">
+      <section className="bg-primary-400" id="booking">
         <div className="pt-16 pb-24 mx-auto max-w-screen-2xl">
           <div className="max-w-screen-xl mx-auto px-4">
             <div className="text-center">
@@ -172,7 +161,10 @@ const LandingPage = () => {
                       {plans[0]?.features?.map((item, index) => {
                         if (item.status) {
                           return (
-                            <p className="inline-flex tracking-wide" key={index}>
+                            <p
+                              className="inline-flex tracking-wide"
+                              key={index}
+                            >
                               <span>
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +186,10 @@ const LandingPage = () => {
                           );
                         } else {
                           return (
-                            <p className="inline-flex tracking-wide text-gray-500" key={index}>
+                            <p
+                              className="inline-flex tracking-wide text-gray-500"
+                              key={index}
+                            >
                               <span>
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -229,7 +224,7 @@ const LandingPage = () => {
                 </div>
               </div>
               <div className="mx-auto bg-gradient-to-b from-blue-900 to-secondary-900 rounded-xl">
-                <div className="px-8 py-10 rounded-xl max-w-max">
+                <div className="px-8 py-10 rounded-xl max-w-xs">
                   <div className="text-center text-gray-300">
                     <div>{plans[1]?.title}</div>
                     <div className="mt-5 mb-2 font-semibold price text-light-1 text-[32px]">
@@ -240,7 +235,10 @@ const LandingPage = () => {
                       {plans[1]?.features?.map((item, index) => {
                         if (item.status) {
                           return (
-                            <p className="inline-flex tracking-wide" key={index}>
+                            <p
+                              className="inline-flex tracking-wide"
+                              key={index}
+                            >
                               <span>
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -259,10 +257,13 @@ const LandingPage = () => {
                               </span>
                               {item.text}
                             </p>
-                          )
+                          );
                         } else {
                           return (
-                            <p className="inline-flex tracking-wide text-gray-500" key={index}>
+                            <p
+                              className="inline-flex tracking-wide text-gray-500"
+                              key={index}
+                            >
                               <span>
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -281,7 +282,7 @@ const LandingPage = () => {
                               </span>
                               {item.text}
                             </p>
-                          )
+                          );
                         }
                       })}
                     </div>
@@ -301,7 +302,9 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <Footer />
+      <section id="about">
+        <Footer />
+      </section>
     </>
   );
 };

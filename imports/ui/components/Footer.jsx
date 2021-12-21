@@ -10,7 +10,7 @@ export const Footer = () => {
               Go-Work
             </div>
             <p className="text-white font-light mt-5 leading-snug tracking-wide">
-              Jalan Sumbawa No 2<br />Mangkujayan Ponorogo
+              Jalan Cyber No 22A<br />Cyber, Jakarta Utara
             </p>
           </div>
           <div className="col-span-2">
@@ -47,7 +47,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="py-4 text-white mx-auto text-center border-t border-primary-300">
-        <p>2021 Go-Work | All rights reserved</p>
+        <p>2021 Go-Work | All Rights Reserved</p>
       </div>
     </section>
   );

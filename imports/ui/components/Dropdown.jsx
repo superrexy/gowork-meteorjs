@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Meteor } from "meteor/meteor";
 import { authenticated } from "../store/index";
+import { toast } from "react-toastify";
 
 export const Dropdown = () => {
   const [auth, setAuth] = useRecoilState(authenticated);
@@ -14,6 +15,15 @@ export const Dropdown = () => {
     Meteor.logout((error) => {
       if (error) console.log(error);
       else {
+        toast.success("Logout Berhasil!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         setAuth({ check: false, user: [] });
         navigate("/", { replace: true });
       }
@@ -59,7 +69,7 @@ export const Dropdown = () => {
       >
         <div className="py-1" role="none">
           <Link
-            to="/user/"
+            to={auth?.user?.profile?.role == "admin" ? '/admin' : '/user'}
             className="text-gray-700 block px-4 py-2 text-sm"
             role="menuitem"
             tabIndex="-1"

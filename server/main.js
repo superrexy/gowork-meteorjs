@@ -5,7 +5,7 @@ import "../imports/api/fixtures";
 import "../imports/api/methods";
 
 const SEED_EMAIL = "bintangrezeka@go-work.dev";
-const SEED_PASSWORD = "password";
+const SEED_PASSWORD = "password123";
 
 Meteor.startup(() => {
   if (!Accounts.findUserByEmail(SEED_EMAIL)) {

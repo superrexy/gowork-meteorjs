@@ -3,18 +3,40 @@ import { useNavigate } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import { useRecoilState } from "recoil";
 import { authenticated } from "../store/index";
+import { toast } from "react-toastify";
 
 export const Login = () => {
   let navigate = useNavigate();
   const [auth, setAuth] = useRecoilState(authenticated);
 
-  const handleLogin = () => {
-    Meteor.loginWithGoogle({}, (error) => {
+  const handleLogin = async () => {
+    await Meteor.loginWithGoogle({}, (error) => {
       if (error) console.log(error);
       else {
-        const user = Meteor.user();
-        setAuth({check: true, user});
-        navigate("/", {replace: true});
+        toast.success("Login Berhasil!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        Meteor.users.update(
+          Meteor.userId(),
+          {
+            $set: { "profile.role": "user" },
+          },
+          {},
+          (error) => {
+            const user = Meteor.user();
+            if (error) console.log(error);
+            else {
+              setAuth({ check: true, user });
+              navigate("/", { replace: true });
+            }
+          }
+        );
       }
     });
   };
