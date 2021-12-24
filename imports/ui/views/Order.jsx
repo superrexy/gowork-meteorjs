@@ -4,6 +4,7 @@ import { authenticated } from "../store/index";
 import { useTracker } from "meteor/react-meteor-data";
 import { PlansCollection } from "../../api/collections/plans";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import Navbar from "../components/Navbar";
 
 export const Order = () => {

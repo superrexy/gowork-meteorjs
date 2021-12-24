@@ -60,8 +60,8 @@ export const Dashboard = () => {
         });
         
         Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Success!',
+          'Order Successfully Confirmed!',
           'success'
         )
       }
